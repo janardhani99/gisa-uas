@@ -20,7 +20,7 @@ class IndexController extends Controller
                 ->join('tb_kelurahan','tb_input.id_kelurahan','=','tb_kelurahan.id_kelurahan')
                 ->join('tb_kecamatan','tb_kelurahan.id_kecamatan','=','tb_kecamatan.id_kecamatan')
                 ->join('tb_kabupaten','tb_kecamatan.id_kabupaten','=','tb_kabupaten.id_kabupaten')
-                ->where('tanggal', $dateNow)->orderBy('id_kelurahan','asc')
+                ->where('tanggal', $dateNow)->orderBy('id_kelurahan','desc')
                 ->get();
         $positif = Covid::select(DB::raw('COALESCE(SUM(positif),0) as positif'))->where('tanggal',$dateNow)->get();
         $rawat = Covid::select(DB::raw('COALESCE(SUM(rawat),0) as rawat'))->where('tanggal',$dateNow)->get();
